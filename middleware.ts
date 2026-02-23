@@ -1,6 +1,12 @@
 import { type NextRequest } from 'next/server'
 import { updateSession } from '@/utils/supabase/middleware'
 
+/**
+ * Manage and refresh the authentication session for an incoming Next.js request.
+ *
+ * @param request - The incoming NextRequest to be processed by the middleware
+ * @returns The response or middleware result to send for the given request
+ */
 export async function middleware(request: NextRequest) {
     return await updateSession(request)
 }
