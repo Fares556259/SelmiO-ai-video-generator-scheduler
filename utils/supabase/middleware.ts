@@ -1,6 +1,12 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
+/**
+ * Synchronizes Supabase server-side session cookies with the incoming request and returns a response that preserves those cookies.
+ *
+ * @param request - The incoming Next.js request whose cookies are used to initialize the Supabase server client and to create the response.
+ * @returns A NextResponse configured to preserve Supabase session cookies and suitable to return from middleware or route handlers.
+ */
 export async function updateSession(request: NextRequest) {
     let supabaseResponse = NextResponse.next({
         request,
