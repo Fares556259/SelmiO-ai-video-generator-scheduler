@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { PlayCircle, Sparkles, CalendarClock, Share2, Mail, ArrowRight, CheckCircle2, Video } from "lucide-react";
+import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export default function Home() {
   return (
@@ -27,10 +27,20 @@ export default function Home() {
           <Link href="#pricing" className="hover:text-white transition-colors">Pricing</Link>
         </nav>
         <div className="flex items-center gap-4">
-          <Link href="/login" className="text-sm font-medium text-zinc-300 hover:text-white transition-colors">Log in</Link>
-          <button className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-zinc-200 transition-colors">
-            Get Started
-          </button>
+          <SignedOut>
+            <SignInButton mode="modal">
+              <button className="text-sm font-medium text-zinc-300 hover:text-white transition-colors">Log in</button>
+            </SignInButton>
+            <SignUpButton mode="modal">
+              <button className="bg-white text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-zinc-200 transition-colors">
+                Get Started
+              </button>
+            </SignUpButton>
+          </SignedOut>
+          <SignedIn>
+            <Link href="/dashboard" className="text-sm font-medium text-zinc-300 hover:text-white transition-colors">Dashboard</Link>
+            <UserButton />
+          </SignedIn>
         </div>
       </header>
 
@@ -51,10 +61,20 @@ export default function Home() {
             SelmiO is the ultimate SaaS for creators. Generate AI short videos and automatically schedule them for YouTube Shorts, Instagram Reels, TikTok, and Email campaigns in one click.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-black font-semibold text-lg hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2">
-              Start Generating for Free
-              <ArrowRight className="w-5 h-5" />
-            </button>
+            <SignedOut>
+              <SignUpButton mode="modal">
+                <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-black font-semibold text-lg hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2">
+                  Start Generating for Free
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </SignUpButton>
+            </SignedOut>
+            <SignedIn>
+              <Link href="/dashboard" className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-black font-semibold text-lg hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2">
+                Go to Dashboard
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </SignedIn>
             <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-semibold text-lg hover:bg-white/10 transition-colors flex items-center justify-center gap-2 backdrop-blur-sm">
               <PlayCircle className="w-5 h-5" />
               Watch Demo
@@ -158,9 +178,18 @@ export default function Home() {
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
             <h2 className="relative z-10 text-4xl md:text-5xl font-bold tracking-tight mb-6">Ready to dominate short form?</h2>
             <p className="relative z-10 text-zinc-300 text-lg mb-8 max-w-2xl mx-auto">Join thousands of creators scheduling their path to millions of views every single day.</p>
-            <button className="relative z-10 px-8 py-4 rounded-full bg-white text-black font-semibold text-lg hover:bg-zinc-200 transition-colors">
-              Get Started for Free
-            </button>
+            <SignedOut>
+              <SignUpButton mode="modal">
+                <button className="relative z-10 px-8 py-4 rounded-full bg-white text-black font-semibold text-lg hover:bg-zinc-200 transition-colors">
+                  Get Started for Free
+                </button>
+              </SignUpButton>
+            </SignedOut>
+            <SignedIn>
+              <Link href="/dashboard" className="inline-block relative z-10 px-8 py-4 rounded-full bg-white text-black font-semibold text-lg hover:bg-zinc-200 transition-colors">
+                Go to Dashboard
+              </Link>
+            </SignedIn>
           </div>
         </section>
       </main>
