@@ -41,7 +41,7 @@ export default async function DashboardPage() {
     }
 
     return (
-        <div className="min-h-screen bg-black text-white font-sans selection:bg-purple-500/30">
+        <div className="w-full font-sans selection:bg-purple-500/30 text-white">
             <div className="max-w-7xl mx-auto px-6 py-12">
                 <div className="flex items-center justify-between border-b border-white/10 pb-8 mb-12">
                     <div>
